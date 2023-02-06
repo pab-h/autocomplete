@@ -1,4 +1,4 @@
-from BaseSearchEngine import BaseSearchEngine
+from .engines.BaseSearchEngine import BaseSearchEngine
 
 class Autocomplete:
     def __init__(self, engine: BaseSearchEngine):
@@ -16,8 +16,8 @@ class Autocomplete:
         return self.__engine.search(prefix)
 
 if __name__ == "__main__":
-    from LinearSearchEngine import LinearSearchEngine
-    from Dictionary import Dictionary
+    from .engines.LinearSearchEngine import LinearSearchEngine
+    from .utils.Dictionary import Dictionary
 
     import os 
 

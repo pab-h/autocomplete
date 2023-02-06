@@ -1,12 +1,10 @@
-from Dictionary import Dictionary
-from BaseSearchEngine import BaseSearchEngine
-import os
+from .BaseSearchEngine import BaseSearchEngine
 
 class LinearSearchEngine(BaseSearchEngine):
     def search(self, prefix: str) -> list[str]:
         suggestions: list[str] = []
 
-        for word in self._dictionary.words:
+        for word in self.dictionary():
             if word.startswith(prefix):
                 suggestions.append(word)
 
@@ -16,6 +14,10 @@ class LinearSearchEngine(BaseSearchEngine):
         return suggestions
 
 if __name__ == "__main__":
+    from ..utils import Dictionary
+    import os
+
+
     filename = os.path.join(os.getcwd(), "dictionary.txt")
 
     dictionary = Dictionary(filename)
