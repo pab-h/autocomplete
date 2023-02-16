@@ -9,14 +9,6 @@ class BaseSearchEngine(ABC):
         
         self.max_suggestions = 3
 
-    @property
-    def max_suggestions(self):
-        return self.max_suggestions
-
-    @max_suggestions.setter
-    def max_suggestions(self, new_max_suggestions: int):
-        self.max_suggestions = new_max_suggestions
-
     @abstractmethod
     def search(self, prefix: str) -> list[str]:
         raise NotImplementedError("Subclass should implement this!")
