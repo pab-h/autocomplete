@@ -1,19 +1,17 @@
 class Dictionary:
     @staticmethod
-    def saniteze(words: list[str]):
-        return [word.split('\n')[0] for word in words]
+    def format(words: list[str]):
+        return [word.split('\n')[0].lower() for word in words]
 
-    def __init__(self, path: str) -> None: 
-        self.__words = self.__load(path)
-
-    def __call__(self):
-        return self.__words
-
-    def __load(self, path: str) -> list[str]:
+    def __init__(self, words: list[str]) -> None: 
+        self.words = words
+    
+    @classmethod
+    def from_file(cls, path: str):
         with open(path, 'r') as file:
             words = file.readlines()
-            
-            return Dictionary.saniteze(words)
+
+            return cls(cls.format(words))
 
 if __name__ == '__main__':
     import os
@@ -25,5 +23,5 @@ if __name__ == '__main__':
         dictionary_filename
     )
 
-    dictionary = Dictionary(path)
-    print(dictionary())
+    dictionary = Dictionary.from_file(dictionary_filename)
+    print(dictionary.words)
