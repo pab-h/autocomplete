@@ -2,18 +2,10 @@ from .engines.BaseSearchEngine import BaseSearchEngine
 
 class Autocomplete:
     def __init__(self, engine: BaseSearchEngine):
-        self.__engine = engine
-
-    @property
-    def engine(self):
-        return self.__engine
-
-    @engine.setter
-    def engine(self, other_engine: BaseSearchEngine):
-        self.__engine = other_engine
+        self.engine = engine
 
     def suggestions_to(self, prefix: str):
-        return self.__engine.search(prefix)
+        return self.engine.search(prefix.lower())
 
 if __name__ == "__main__":
     from .engines.LinearSearchEngine import LinearSearchEngine
@@ -23,7 +15,7 @@ if __name__ == "__main__":
 
     filename = os.path.join(os.getcwd(), "dictionary.txt")
 
-    dictionary = Dictionary(filename)
+    dictionary = Dictionary.from_file(filename)
 
     linearEngine = LinearSearchEngine(dictionary)
 
